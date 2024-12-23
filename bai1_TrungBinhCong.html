@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tính Trung Bình Cộng</title>
+</head>
+<body>
+<script>
+    function nhapMang() {
+        let numbers = [];
+        let soPhanTuMang = parseInt(prompt("Nhập số phần tử trong mảng"));
+
+        if (soPhanTuMang > 50) {
+            alert("Số phần tử trong mảng không được vượt quá 50");
+            return;
+        }
+
+        for (let i = 0; i < soPhanTuMang; i++) {
+            let soPhanT = parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`));
+            numbers.push(soPhanT);
+        }
+
+        return numbers;
+    }
+
+    function tinhTrungBinhCong(numbers) {
+        let sum = 0;
+        let count = 0;
+
+        for (let i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 3 === 0) {
+                sum += numbers[i];
+                count++;
+            }
+        }
+
+        if (count > 0) {
+            return sum / count;
+        } else {
+            return 0;
+        }
+    }
+
+    function hienThiKetQua() {
+        let numbers = nhapMang();
+        document.write("Mảng vừa nhập là: " + numbers + "<br>");
+        let tbc = tinhTrungBinhCong(numbers);
+        document.write("Trung bình cộng của các số chia hết cho 3 là: " + tbc);
+    }
+
+    hienThiKetQua();
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tháng Năm</title>
+</head>
+<body>
+<table style="width:100%" border="1" id="table">
+    <tr>
+        <th id="thang">Tháng</th>
+        <th id="ngay">Số Ngày Trong Tháng</th>
+    </tr>
+</table>
+<script>
+    function kiemTraNam(year) {
+        return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+    }
+
+    function getDayInMonth(month, year) {
+        if (month == 2) {
+            return kiemTraNam(year) ? 29 : 28;
+        }
+        const month30Days = [4, 6, 9, 11];
+        if (month30Days.includes(month)) {
+            return 30;
+        }
+        return 31;
+    }
+
+    let input = prompt("nhap thang nam");
+    let regex = /^(0[1-9]|1[0-2])\/\d{4}$/;
+    if (regex.test(input)) {
+        let split = input.split('/');
+        let month = parseInt(split[0]);
+        let year = parseInt(split[1]);
+        let day = getDayInMonth(month, year);
+
+        let table = document.querySelector("table");
+        let newRow = table.insertRow();
+        let cell1 = newRow.insertCell(0);
+        let cell2 = newRow.insertCell(1);
+
+        cell1.textContent = month;
+        cell2.textContent = day;
+
+    } else {
+        console.log("định dạng không hợp lệ");
+    }
+
+</script>
+</body>
+</html>
